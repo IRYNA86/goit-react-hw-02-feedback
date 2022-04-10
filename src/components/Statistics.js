@@ -17,7 +17,15 @@ class Statistics extends React.Component{
   neutral: this.props.initialNeutral,
   bad: this.props.initialBad
     }
-
+    countTotalFeedback = () => {
+        // return this.state.good + this.state.neutral + this.state.bad
+    return Object.values(this.state).reduce((total, item) => total + item, 0)
+    };
+    
+    countPositiveFeedbackPercentage = () => {
+        return (this.state.good / this.countTotalFeedback() * 100).toFixed(2);
+    };
+    
     handleGood = () => {
         this.setState(prevState => {
             return {
@@ -40,6 +48,8 @@ handleBad = () => {
         })
     };
     render() {
+        const total = this.countTotalFeedback();
+        const positiveFeedBack = this.countPositiveFeedbackPercentage();
         return (
            <div>
         <h2>Please leave feedback</h2>
@@ -57,8 +67,8 @@ handleBad = () => {
         <p>Good: {this.state.good}</p>
                 <p>Neutral: { this.state.neutral}</p>
                 <p>Bad: { this.state.bad}</p>
-        <p>Total: </p>
-        <p>Positive feedback: </p>
+        <p>Total: {total} </p>
+        <p>Positive feedback: {positiveFeedBack} %</p>
     </div> 
         )
     }
