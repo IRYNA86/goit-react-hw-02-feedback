@@ -1,0 +1,13 @@
+.button {
+  width: 120px;
+  height: 50px;
+  padding: 0px;
+}
+.button:not(:last-child) {
+  margin-left: 15px;
+  background-color: rgb(43, 226, 168);
+  border-radius: 5px;
+}
+.titleFirst {
+  font-size: 30px;
+}
